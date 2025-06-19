@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.domain.BoardVO;
+import com.example.demo.domain.PagingVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,10 @@ public interface BoardMapper {
     void getDelete(long bno);
 
     void update(BoardVO boardVO);
+
+    int getTotalCount(PagingVO pagingVO);
+
+    List<BoardVO> getList(PagingVO pagingVO);
+
+    long getBno();
 }
