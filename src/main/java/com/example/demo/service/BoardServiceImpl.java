@@ -19,6 +19,7 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService{
     private final BoardMapper boardMapper;
     private final FileMapper fileMapper;
+    private Object getBoardVO;
 
     @Transactional
     @Override
@@ -57,8 +58,17 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void update(BoardVO boardDTO) {
-        boardMapper.update(boardDTO);
+    public void update(BoardDTO boardDTO) {
+        boardMapper.update(boardDTO.getBoardVO());
+        if(boardDTO.getFileList() == null){
+            return;
+        }
+        if(!boardDTO.getFileList().isEmpty()){
+            for(FileVO fvo : boardDTO.getFileList()){
+                fvo.setBno(boardDTO.getBoardVO().getBno());
+                fileMapper.insertFile(fvo);
+            }
+        }
     }
 
     @Override

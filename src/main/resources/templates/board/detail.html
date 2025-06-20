@@ -8,7 +8,7 @@
   <div class="container-md">
     <th:block th:with="bvo=${boardDTO.boardVO}">
       <h3>No. [[${bvo.bno}]] / Board Detail Page </h3>
-      <form action="/board/modify" method="post" id="modForm">
+      <form action="/board/modify" method="post" id="modForm" enctype="multipart/form-data">
         <input type="hidden" name="bno" th:value="${bvo.bno}">
         <div class="mb-3">
           <label for="t" class="form-label">title</label>

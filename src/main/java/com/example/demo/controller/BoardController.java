@@ -66,8 +66,15 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String update(BoardVO boardVO, RedirectAttributes redirectAttributes) {
-        bsv.update(boardVO);
+    public String update(BoardVO boardVO,
+                         @RequestParam(name = "files", required = false) MultipartFile[] files,
+                         RedirectAttributes redirectAttributes){
+        List<FileVO> fileList = null;
+        if(files != null && files[0].getSize() > 0){
+            fileList =fileHandler.uploadFiles(files);
+            log.info(">>>> fileList >> {}",fileList);
+        }
+        bsv.update(new BoardDTO(boardVO, fileList));
         redirectAttributes.addAttribute("bno", boardVO.getBno());
         return "redirect:/board/detail";
     }

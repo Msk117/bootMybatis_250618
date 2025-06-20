@@ -18,7 +18,7 @@ public interface BoardService {
 
     void getDelete(long bno);
 
-    void update(BoardVO boardVO);
+    void update(BoardDTO boardVO);
 
     int getTotalCount(PagingVO pagingVO);
 
