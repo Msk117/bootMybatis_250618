@@ -22,6 +22,9 @@
             animation: rotate360 7s linear infinite;
         }
     </style>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+
 </head>
 <body>
 <!--/* <div th:replace="~{조각 파일의 경로 :: 이름}"></div> */-->
